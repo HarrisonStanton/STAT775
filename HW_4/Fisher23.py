@@ -20,17 +20,16 @@ distancearray = []
 tracking = []
 
 def probofx(x, mu, sigma):
-    inter = 1.0/(2 * math.pi * sigma)
+    inter = 1.0/(math.sqrt(2 * math.pi * sigma))
     expon = (-0.5 * (x - mu) ** 2)/(sigma ** 2)
     return inter * math.exp(expon)
 
 #Array of (0, 0) points so we can sum outputs
 conf_arr = np.zeros((10, 10), int)
 
-sigmasub = np.matrix(la.inv(sigma[3] - sigma[2]))
+sigmasub = np.matrix(la.inv(sigma[3] + sigma[2]))
 
 musub = np.matrix(mu[3] - mu[2])
-
 a = sigmasub * np.transpose(musub)
 
 a = np.divide(a, la.norm(a))
@@ -75,6 +74,10 @@ for i in range(len(pretrain2)):
         count3 += 1
 
 print count2, count3, float(count2)/float(count2+count3)
+
+count2 = 0
+count3 = 0
+
 
 for i in range(len(pretrain3)):
     testing = np.dot(pretrain3[i], aprime)

@@ -27,7 +27,7 @@ distancearray = []
 tracking = []
 
 def probofx(x, mu, sigma):
-    inter = 1.0/(2 * math.pi * sigma)
+    inter = 1.0/math.sqrt((2 * math.pi * sigma))
     expon = (-0.5 * (x - mu) ** 2)/(sigma ** 2)
     return inter * math.exp(expon)
 
@@ -38,7 +38,7 @@ ident = np.identity(256)
 
 shifter = ident * np.finfo(float).eps
 
-sigmasub = np.matrix(la.inv(sigma[9] - sigma[7] - shifter))
+sigmasub = np.matrix(la.inv((sigma[9] + sigma[7]) - shifter))
 
 musub = np.matrix(mu[9] - mu[7])
 
@@ -83,6 +83,9 @@ for i in range(len(train7)):
         count9 += 1
 
 print count7, count9, float(count7)/float(count7+count9)
+
+count7 = 0
+count9 = 0
 
 for i in range(len(train9)):
     testing = np.dot(train9[i], aprime)
