@@ -101,8 +101,8 @@
 %----------------------------------------------------------------------------------------
 
 \section{Problem Set}
-\subsection{Excercize 3.12}
-
+\subsection{Exercise 3.12}
+Show that the ridge regression estimates can be obtained by ordinary least squares regression on an augmented data set. We augment the centered matrix \textbf{X} with \textit{p} additional rows $\sqrt{\lambda}$\textbf{I}, and augment \textbf{y} with \textit{p} zeros.\\
 \[
     \hat{X} = 
     \begin{bmatrix}
@@ -115,6 +115,9 @@
         \mathcal O_{px1}       
     \end{bmatrix}
 \]
+
+By introducing artificial data having response value zero, the fitting procedure is forced to shrink the coefficients toward zero. This is ...  that satisfy them.\\
+
 \[
     \hat{\beta}_{LS} = (\hat{X}^T\hat{X} + \lambda I_{pxp})^{-1}\hat{X}^T\hat{Y}
 \]
@@ -144,6 +147,18 @@
     \hat{\beta}_{LS} = (X^TX + \lambda_{pxp})^{-1}X^TY
 \]
 \subsection{Code}
+
+The assignment was to use Fisher Discriminators to distinguish between 2 and 3, 4 and 5, and 7 and 9 from the Zip code digit data given by the book. \\
+
+The only real issues were related to trying to get Python and Numpy to get the dimensionality of arrays and matrices correct. Beyond that, dealing with the occasional singular matrix was the only other excitement. The following give the output for both the training and the test data.\\
+
+\includegraphics[scale=0.6]{Fisher1.png}
+
+\includegraphics[scale=0.6]{Fisher2.png}  
+
+\pagebreak
+Here is the actual code. \\
+
 \begin{verbatim}
 #23, 45, 79
 
