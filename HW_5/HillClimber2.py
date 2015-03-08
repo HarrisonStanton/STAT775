@@ -8,11 +8,11 @@ Created on Thu Feb 26 09:35:37 2015
 import random
 import math
 
-import numpy as np
+#import numpy as np
 
-step = 0.1
+step = 0.0000001
 
-numsteps = 75
+numsteps = 1000
 
 def rnum():
     return random.uniform(-1.0, 1.0)
@@ -38,14 +38,14 @@ def grad(point, stepsize):
                 if i == j:
                     subarr.append(point[i] + stepsize)
                 else:
-                    subarr.append(point[j])
+                    subarr.append(0)
             arr.append(subarr)
         out = []
         for i in range(len(arr)):
             psum = []
             for j in range(len(arr[i])):
                 psum.append(point[j] + arr[i][j])
-            out.append((f(psum) - f(point)))
+            out.append((f(psum) - f(point))/stepsize)
     return out
     
 def cpyarr(a):
@@ -54,7 +54,7 @@ def cpyarr(a):
         out.append(i)
     return out
         
-random.seed(1971)
+random.seed(1970)
 
 randarray = []
 oldarray = []
